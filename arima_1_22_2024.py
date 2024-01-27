@@ -119,13 +119,13 @@ def fit_arima_and_predict(df, order, seasonal_order, forecast_steps, title, save
     forecast = np.exp(results.forecast(steps=40))
 
     forecast_df['original'] = forecast_index
-    forecast_df.to_csv(title+'.csv', sep=',', index=False, encoding='utf-8')
+    forecast_df.to_csv('data/'+title+'.csv', sep=',', index=False, encoding='utf-8')
     
     # plt.title('Pier 1 - Embarking')
     # plt.title('Pier 3 - Embarking')
     # plt.title('Pier 1 - Disembarking')
     plt.title(title)
-    plt.savefig(title)
+    plt.savefig('data/'+title)
     # plt.show()
 
 

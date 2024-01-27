@@ -158,12 +158,12 @@ def fit_sarima_and_predict(df, order, seasonal_order, forecast_steps, title, sav
     plt.ylabel('Values')
     plt.legend()
     if save:
-        plt.savefig(title+'.png')
+        plt.savefig('data'+title+'.png')
     else:
         plt.show()
 
     forecast_df['original'] = forecast_df.index
-    forecast_df.to_csv(title+'.csv', sep=',', index=False, encoding='utf-8')
+    forecast_df.to_csv('data'+title+'.csv', sep=',', index=False, encoding='utf-8')
 
     return forecast_df
 
