@@ -12,8 +12,10 @@ df1 = pd.read_csv('2024-passengers-p1-embarking.csv', parse_dates=['Quarter'], i
 df2 = pd.read_csv('2024-passengers-p3-embarking.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
 df3 = pd.read_csv('2024-passengers-p1-disembarking.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
 df4 = pd.read_csv('2024-passengers-p3-disembarking.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
-df5 = pd.read_csv('2024-shipcall-p1.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
-df6 = pd.read_csv('2024-shipcall-p3.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
+df5 = pd.read_csv('2024-embarking-shipcall-p1.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
+df6 = pd.read_csv('2024-embarking-shipcall-p3.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
+df7 = pd.read_csv('2024-disembarking-shipcall-p1.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
+df8 = pd.read_csv('2024-disembarking-shipcall-p3.csv', parse_dates=['Quarter'], index_col = ['Quarter'])
 
 # df.head()
 # plt.xlabel('Quarter')
@@ -100,8 +102,10 @@ title1 = 'Pier 1 - Embarking - Forecast (SARIMA)'
 title2 = 'Pier 3 - Embarking - Forecast (SARIMA)'
 title3 = 'Pier 1 - Disembarking - Forecast (SARIMA)'
 title4 = 'Pier 3 - Disembarking - Forecast (SARIMA)'
-title5 = 'Pier 1 - Shipcall - Forecast (SARIMA)'
-title6 = 'Pier 3 - Shipcall - Forecast (SARIMA)'
+title5 = 'Pier 1 - Embarking Shipcall - Forecast (SARIMA)'
+title6 = 'Pier 3 - Embarking Shipcall - Forecast (SARIMA)'
+title7 = 'Pier 1 - Disembarking Shipcall - Forecast (SARIMA)'
+title8 = 'Pier 3 - Disembarking Shipcall - Forecast (SARIMA)'
 
 # print('Pier 1 - Embarking - Forecast')
 # print('Pier 3 - Embarking - Forecast')
@@ -158,12 +162,12 @@ def fit_sarima_and_predict(df, order, seasonal_order, forecast_steps, title, sav
     plt.ylabel('Values')
     plt.legend()
     if save:
-        plt.savefig('data'+title+'.png')
+        plt.savefig('./data/'+title+'.png')
     else:
         plt.show()
 
     forecast_df['original'] = forecast_df.index
-    forecast_df.to_csv('data'+title+'.csv', sep=',', index=False, encoding='utf-8')
+    forecast_df.to_csv('./data/'+title+'.csv', sep=',', index=False, encoding='utf-8')
 
     return forecast_df
 
@@ -173,3 +177,5 @@ fit_sarima_and_predict(df3, (2,1,2), (1,1,1,4), 120, title3)
 fit_sarima_and_predict(df4, (2,1,2), (1,1,1,4), 120, title4)
 fit_sarima_and_predict(df5, (2,1,2), (1,1,1,4), 120, title5)
 fit_sarima_and_predict(df6, (2,1,2), (1,1,1,4), 120, title6)
+fit_sarima_and_predict(df7, (2,1,2), (1,1,1,4), 120, title7)
+fit_sarima_and_predict(df8, (2,1,2), (1,1,1,4), 120, title8)
